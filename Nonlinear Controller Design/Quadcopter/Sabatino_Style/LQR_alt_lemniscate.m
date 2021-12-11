@@ -47,15 +47,37 @@ uArr = zeros(4, steps);
 xArr(:, 1) = xi;
 uArr(:, 1) = u;
 
+A_cur = A;
+B_cur = B;
+
+
+Asym_state = eval(subs(Asym, [m Ixx Iyy Izz g l u1 u2 u3 u4]', ...
+    [mass; inertia; 9.81; dist; ubar]));
+A_evaluator = matlabFunction(Asym_state, 'Vars', ...
+    {[x y z phi theta psi xdot ydot zdot p q r]});
+Bsym_state = eval(subs(Bsym, [m Ixx Iyy Izz g l u1 u2 u3 u4]', ...
+    [mass; inertia; 9.81; dist; ubar]));
+B_evaluator = matlabFunction(Bsym_state, 'Vars', ...
+    {[x y z phi theta psi xdot ydot zdot p q r]});
+
+
 % Rollout:
 for i = 1:steps
+    tic
     % Update x at each time with nonlinear_dynamics
     xi = xi + Ts*nonlinear_dynamics(xi, u);
+    values = [xi; mass; inertia; 9.81; dist; ubar];
+    % Now substitute this into A and B to get real matrices
+    A_cur = A_evaluator(xi');
+    B_cur = B_evaluator(xi');
+    [Ad, Bd] = continuous_to_discrete(A_cur, B_cur, Ts);
+    K_lqr = dlqr(Ad, Bd, Q, R, []);
     % Use LQR gains to find new control
     u = -K_lqr*(xi - trajRef(:, i));
     % Place inside matrices
     xArr(:, i+1) = xi;
     uArr(:, i+1) = u;
+    toc
 end
 
 max_err_lqr = max(abs(xArr(1:3, 2:end) - trajRef([1:3], 1:end)), [], 2)'

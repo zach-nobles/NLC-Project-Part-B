@@ -1,10 +1,12 @@
 %% Plotting script
-flag = false; % if we save video
+flag = true; % if we save video
 figure
 % CoM, motor 1, CoM, motor 2, CoM, motor 3, CoM, motor 4
 xvec_body = [0, dist, 0, 0, 0, -dist, 0, 0];
 yvec_body = [0, 0, 0, dist, 0, 0, 0, -dist];
 zvec_body = [0, 0, 0, 0, 0, 0, 0, 0];
+
+xArr = trajRef;
 % Current rotation matrix
 R_temp = eval(subs(RotM, [phi theta psi]', xArr(4:6, 1)));
 % Transform to current position 
@@ -20,23 +22,24 @@ if flag
     %vidObj = VideoWriter('fbl_barrel','MPEG-4');
     %vidObj = VideoWriter('fbl_helix', 'MPEG-4');
     %vidObj = VideoWriter('lqr_lemniscate', 'MPEG-4');
-    vidObj = VideoWriter('fbl_lemniscate', 'MPEG-4');
-    
+    %vidObj = VideoWriter('fbl_lemniscate', 'MPEG-4');
+    vidObj = VideoWriter('ref_barrel', 'MPEG-4');
+
     vidObj.FrameRate = 100;
     writeAnimation(vidObj)
 end
 
 
 fh = figure(1);
-plot3(xref, yref, zref, 'k:')
+%plot3(xref, yref, zref, 'k:')
 ph2 = plot3(xArr(1, 1), xArr(2, 1), xArr(3, 1), 'b-');
 xlim([min(xArr(1, :)) - 1, max(xArr(1, :)) + 1])
 ylim([min(xArr(2, :)) - 1, max(xArr(2, :)) + 1])
 zlim([min(0, min(xArr(3, :)) - 1), max(xArr(3, :)) + 1])
-%zlim([2.5 5.5]) % barrel roll
+zlim([2.5 5.5]) % barrel roll
 %zlim([0.5, 4.5]) % helix
 %zlim([0.5, 11.5])
-zlim([0, 4]) % lemniscate
+%zlim([0, 4]) % lemniscate
 
 if flag
     open(vidObj)
