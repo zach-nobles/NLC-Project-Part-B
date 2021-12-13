@@ -111,89 +111,107 @@ MulticopterGSControl::MulticopterGSControl():ModuleParams(nullptr),_loop_perf(pe
 	 region 10 =  3pi/4 ->  4pi/4
 	*/
 
-	_Kerr1 = readMatrixKerr("/home/zach/PX4-Autopilot/src/examples/gs_control/gs_files/K_err_-6pi4.txt");
-	_Kint1 = readMatrixKint("/home/zach/PX4-Autopilot/src/examples/gs_control/gs_files/K_int_-6pi4.txt");
+	_Kerr1 = readMatrixKerr("C:/PX4/PX4-Autopilot/src/examples/gs_control/gs_files/K_err_-6pi4.txt");
+	_Kint1 = readMatrixKint("C:/PX4/PX4-Autopilot/src/examples/gs_control/gs_files/K_int_-6pi4.txt");
 
-	_Kerr2 = readMatrixKerr("/home/zach/PX4-Autopilot/src/examples/gs_control/gs_files/K_err_-5pi4.txt");
-	_Kint2 = readMatrixKint("/home/zach/PX4-Autopilot/src/examples/gs_control/gs_files/K_int_-5pi4.txt");
+	_Kerr2 = readMatrixKerr("C:/PX4/PX4-Autopilot/src/examples/gs_control/gs_files/K_err_-5pi4.txt");
+	_Kint2 = readMatrixKint("C:/PX4/PX4-Autopilot/src/examples/gs_control/gs_files/K_int_-5pi4.txt");
 
-	_Kerr3 = readMatrixKerr("/home/zach/PX4-Autopilot/src/examples/gs_control/gs_files/K_err_-4pi4.txt");
-	_Kint3 = readMatrixKint("/home/zach/PX4-Autopilot/src/examples/gs_control/gs_files/K_int_-4pi4.txt");
+	_Kerr3 = readMatrixKerr("C:/PX4/PX4-Autopilot/src/examples/gs_control/gs_files/K_err_-4pi4.txt");
+	_Kint3 = readMatrixKint("C:/PX4/PX4-Autopilot/src/examples/gs_control/gs_files/K_int_-4pi4.txt");
 
-	_Kerr4 = readMatrixKerr("/home/zach/PX4-Autopilot/src/examples/gs_control/gs_files/K_err_-3pi4.txt");
-	_Kint4 = readMatrixKint("/home/zach/PX4-Autopilot/src/examples/gs_control/gs_files/K_int_-3pi4.txt");
+	_Kerr4 = readMatrixKerr("C:/PX4/PX4-Autopilot/src/examples/gs_control/gs_files/K_err_-3pi4.txt");
+	_Kint4 = readMatrixKint("C:/PX4/PX4-Autopilot/src/examples/gs_control/gs_files/K_int_-3pi4.txt");
 
-	_Kerr5 = readMatrixKerr("/home/zach/PX4-Autopilot/src/examples/gs_control/gs_files/K_err_-2pi4.txt");
-	_Kint5 = readMatrixKint("/home/zach/PX4-Autopilot/src/examples/gs_control/gs_files/K_int_-2pi4.txt");
+	_Kerr5 = readMatrixKerr("C:/PX4/PX4-Autopilot/src/examples/gs_control/gs_files/K_err_-2pi4.txt");
+	_Kint5 = readMatrixKint("C:/PX4/PX4-Autopilot/src/examples/gs_control/gs_files/K_int_-2pi4.txt");
 
-	_Kerr6 = readMatrixKerr("/home/zach/PX4-Autopilot/src/examples/gs_control/gs_files/K_err_-pi4.txt");
-	_Kint6 = readMatrixKint("/home/zach/PX4-Autopilot/src/examples/gs_control/gs_files/K_int_-pi4.txt");
+	_Kerr6 = readMatrixKerr("C:/PX4/PX4-Autopilot/src/examples/gs_control/gs_files/K_err_-pi4.txt");
+	_Kint6 = readMatrixKint("C:/PX4/PX4-Autopilot/src/examples/gs_control/gs_files/K_int_-pi4.txt");
 
-	_Kerr7 = readMatrixKerr("/home/zach/PX4-Autopilot/src/examples/gs_control/gs_files/K_err_0.txt");
-	_Kint7 = readMatrixKint("/home/zach/PX4-Autopilot/src/examples/gs_control/gs_files/K_int_0.txt");
+	_Kerr7 = readMatrixKerr("C:/PX4/PX4-Autopilot/src/examples/gs_control/gs_files/K_err_0.txt");
+	_Kint7 = readMatrixKint("C:/PX4/PX4-Autopilot/src/examples/gs_control/gs_files/K_int_0.txt");
 
-	_Kerr8 = readMatrixKerr("/home/zach/PX4-Autopilot/src/examples/gs_control/gs_files/K_err_pi4.txt");
-	_Kint8 = readMatrixKint("/home/zach/PX4-Autopilot/src/examples/gs_control/gs_files/K_int_pi4.txt");
+	_Kerr8 = readMatrixKerr("C:/PX4/PX4-Autopilot/src/examples/gs_control/gs_files/K_err_pi4.txt");
+	_Kint8 = readMatrixKint("C:/PX4/PX4-Autopilot/src/examples/gs_control/gs_files/K_int_pi4.txt");
 
-	_Kerr9 = readMatrixKerr("/home/zach/PX4-Autopilot/src/examples/gs_control/gs_files/K_err_2pi4.txt");
-	_Kint9 = readMatrixKint("/home/zach/PX4-Autopilot/src/examples/gs_control/gs_files/K_int_2pi4.txt");
+	_Kerr9 = readMatrixKerr("C:/PX4/PX4-Autopilot/src/examples/gs_control/gs_files/K_err_2pi4.txt");
+	_Kint9 = readMatrixKint("C:/PX4/PX4-Autopilot/src/examples/gs_control/gs_files/K_int_2pi4.txt");
 
-	_Kerr10 = readMatrixKerr("/home/zach/PX4-Autopilot/src/examples/gs_control/gs_files/K_err_2pi4.txt");
-	_Kint10 = readMatrixKint("/home/zach/PX4-Autopilot/src/examples/gs_control/gs_files/K_int_2pi4.txt");
+	_Kerr10 = readMatrixKerr("C:/PX4/PX4-Autopilot/src/examples/gs_control/gs_files/K_err_2pi4.txt");
+	_Kint10 = readMatrixKint("C:/PX4/PX4-Autopilot/src/examples/gs_control/gs_files/K_int_2pi4.txt");
 
 
 	/*
-	cout << "============================================";
-	cout << _Kerr1(0,0); cout << "	";
-	cout << _Kerr1(0,1); cout << "	";
-	cout << _Kerr1(0,2); cout << "	";
-	cout << _Kerr1(0,3); cout << "	";
-	cout << _Kerr1(0,4); cout << "	";
-	cout << _Kerr1(0,5); cout << "	";
-	cout << _Kerr1(0,6); cout << "	";
-	cout << _Kerr1(0,7); cout << "	";
-	cout << _Kerr1(0,8); cout << "	";
-	cout << _Kerr1(0,9); cout << "	";
-	cout << _Kerr1(0,10); cout << "	";
-	cout << _Kerr1(0,11); cout << "\n";
-	cout << _Kerr1(1,0); cout << "	";
-	cout << _Kerr1(1,1); cout << "	";
-	cout << _Kerr1(1,2); cout << "	";
-	cout << _Kerr1(1,3); cout << "	";
-	cout << _Kerr1(1,4); cout << "	";
-	cout << _Kerr1(1,5); cout << "	";
-	cout << _Kerr1(1,6); cout << "	";
-	cout << _Kerr1(1,7); cout << "	";
-	cout << _Kerr1(1,8); cout << "	";
-	cout << _Kerr1(1,9); cout << "	";
-	cout << _Kerr1(1,10); cout << "	";
-	cout << _Kerr1(1,11); cout << "\n";
-	cout << _Kerr1(2,0); cout << "	";
-	cout << _Kerr1(2,1); cout << "	";
-	cout << _Kerr1(2,2); cout << "	";
-	cout << _Kerr1(2,3); cout << "	";
-	cout << _Kerr1(2,4); cout << "	";
-	cout << _Kerr1(2,5); cout << "	";
-	cout << _Kerr1(2,6); cout << "	";
-	cout << _Kerr1(2,7); cout << "	";
-	cout << _Kerr1(2,8); cout << "	";
-	cout << _Kerr1(2,9); cout << "	";
-	cout << _Kerr1(2,10); cout << "	";
-	cout << _Kerr1(2,11); cout << "\n";
-	cout << _Kerr1(3,0); cout << "	";
-	cout << _Kerr1(3,1); cout << "	";
-	cout << _Kerr1(3,2); cout << "	";
-	cout << _Kerr1(3,3); cout << "	";
-	cout << _Kerr1(3,4); cout << "	";
-	cout << _Kerr1(3,5); cout << "	";
-	cout << _Kerr1(3,6); cout << "	";
-	cout << _Kerr1(3,7); cout << "	";
-	cout << _Kerr1(3,8); cout << "	";
-	cout << _Kerr1(3,9); cout << "	";
-	cout << _Kerr1(3,10); cout << "	";
-	cout << _Kerr1(3,11); cout << "\n";
+	cout << "============================================\n";
+	cout << _Kerr6(0,0); cout << "	";
+	cout << _Kerr6(0,1); cout << "	";
+	cout << _Kerr6(0,2); cout << "	";
+	cout << _Kerr6(0,3); cout << "	";
+	cout << _Kerr6(0,4); cout << "	";
+	cout << _Kerr6(0,5); cout << "	";
+	cout << _Kerr6(0,6); cout << "	";
+	cout << _Kerr6(0,7); cout << "	";
+	cout << _Kerr6(0,8); cout << "	";
+	cout << _Kerr6(0,9); cout << "	";
+	cout << _Kerr6(0,10); cout << "	";
+	cout << _Kerr6(0,11); cout << "\n";
+	cout << _Kerr6(1,0); cout << "	";
+	cout << _Kerr6(1,1); cout << "	";
+	cout << _Kerr6(1,2); cout << "	";
+	cout << _Kerr6(1,3); cout << "	";
+	cout << _Kerr6(1,4); cout << "	";
+	cout << _Kerr6(1,5); cout << "	";
+	cout << _Kerr6(1,6); cout << "	";
+	cout << _Kerr6(1,7); cout << "	";
+	cout << _Kerr6(1,8); cout << "	";
+	cout << _Kerr6(1,9); cout << "	";
+	cout << _Kerr6(1,10); cout << "	";
+	cout << _Kerr6(1,11); cout << "\n";
+	cout << _Kerr6(2,0); cout << "	";
+	cout << _Kerr6(2,1); cout << "	";
+	cout << _Kerr6(2,2); cout << "	";
+	cout << _Kerr6(2,3); cout << "	";
+	cout << _Kerr6(2,4); cout << "	";
+	cout << _Kerr6(2,5); cout << "	";
+	cout << _Kerr6(2,6); cout << "	";
+	cout << _Kerr6(2,7); cout << "	";
+	cout << _Kerr6(2,8); cout << "	";
+	cout << _Kerr6(2,9); cout << "	";
+	cout << _Kerr6(2,10); cout << "	";
+	cout << _Kerr6(2,11); cout << "\n";
+	cout << _Kerr6(3,0); cout << "	";
+	cout << _Kerr6(3,1); cout << "	";
+	cout << _Kerr6(3,3); cout << "	";
+	cout << _Kerr6(3,4); cout << "	";
+	cout << _Kerr6(3,5); cout << "	";
+	cout << _Kerr6(3,6); cout << "	";
+	cout << _Kerr6(3,7); cout << "	";
+	cout << _Kerr6(3,8); cout << "	";
+	cout << _Kerr6(3,9); cout << "	";
+	cout << _Kerr6(3,10); cout << "	";
+	cout << _Kerr6(3,11); cout << "\n";
 	cout << "============================================";
 	*/
+
+	cout << "============================================\n";
+	cout << _Kint6(0,0); cout << "	";
+	cout << _Kint6(0,1); cout << "	";
+	cout << _Kint6(0,2); cout << "	";
+	cout << _Kint6(0,3); cout << "	";
+	cout << _Kint6(1,0); cout << "	";
+	cout << _Kint6(1,1); cout << "	";
+	cout << _Kint6(1,2); cout << "	";
+	cout << _Kint6(1,3); cout << "	";
+	cout << _Kint6(2,0); cout << "	";
+	cout << _Kint6(2,1); cout << "	";
+	cout << _Kint6(2,2); cout << "	";
+	cout << _Kint6(2,3); cout << "\n";
+	cout << _Kint6(3,0); cout << "	";
+	cout << _Kint6(3,1); cout << "	";
+	cout << _Kint6(3,2); cout << "	";
+	cout << _Kint6(3,3); cout << "\n";
+	cout << "============================================";
 }
 
 // =================================================================================================================
@@ -318,7 +336,7 @@ void MulticopterGSControl::computeControls()
 		if ( (y_lem < 0.0f && x_lem >= 0.0f) || (y_lem > 0.0f && x_lem < 0.0f) ){
 			yaw += atan2((x_lem*(pow(a,2.0f)-pow(x_lem,2.0f)-pow(y_lem,2.0f))) , (y_lem_future*(pow(a,2.0f)+pow(x_lem,2.0f)+pow(y_lem,2.0f)))) - PI;
 		}
-		_eq_point(8,0) = yaw;
+		//_eq_point(8,0) = yaw;
 
 
 
@@ -373,126 +391,126 @@ void MulticopterGSControl::computeControls()
 		if (_Kerr == _Kerr2 && _x(8,0) > R1-hyst) {
 			_Kerr = _Kerr2;
 			_Kint = _Kint2;
-			cout << "Keeping K2.\n\n";
+			//cout << "Keeping K2.\n\n";
 		}
 		else {
 		_Kerr = _Kerr1;
 		_Kint = _Kint1;
-		cout << "K1.\n\n";
+		//cout << "K1.\n\n";
 		}
 	}
 	if (_x(8,0) >= R1 && _x(8,0) < R2) {
 		if (_Kerr == _Kerr1 && _x(8,0) < R1+hyst) {
 			_Kerr = _Kerr1;
 			_Kint = _Kint1;
-			cout << "Keeping K1.\n\n";
+			//cout << "Keeping K1.\n\n";
 		}
 		else if (_Kerr == _Kerr3 && _x(8,0) > R2-hyst) {
 			_Kerr = _Kerr3;
 			_Kint = _Kint3;
-			cout << "Keeping K3.\n\n";
+			//cout << "Keeping K3.\n\n";
 		}
 		else {
 		_Kerr = _Kerr2;
 		_Kint = _Kint2;
-		cout << "K2.\n\n";
+		//cout << "K2.\n\n";
 		}
 	}
 	if (_x(8,0) >= R2 && _x(8,0) < R3) {
 		if (_Kerr == _Kerr2 && _x(8,0) < R2+hyst) {
 			_Kerr = _Kerr2;
 			_Kint = _Kint2;
-			cout << "Keeping K2.\n\n";
+			//cout << "Keeping K2.\n\n";
 		}
 		else if (_Kerr == _Kerr4 && _x(8,0) > R3-hyst) {
 			_Kerr = _Kerr4;
 			_Kint = _Kint4;
-			cout << "Keeping K4.\n\n";
+			//cout << "Keeping K4.\n\n";
 		}
 		else {
 		_Kerr = _Kerr3;
 		_Kint = _Kint3;
-		cout << "K3.\n\n";
+		//cout << "K3.\n\n";
 		}
 	}
 	if (_x(8,0) >= R3 && _x(8,0) < R4) {
 		if (_Kerr == _Kerr3 && _x(8,0) < R3+hyst) {
 			_Kerr = _Kerr3;
 			_Kint = _Kint3;
-			cout << "Keeping K3.\n\n";
+			//cout << "Keeping K3.\n\n";
 		}
 		else if (_Kerr == _Kerr5 && _x(8,0) > R4-hyst) {
 			_Kerr = _Kerr5;
 			_Kint = _Kint5;
-			cout << "Keeping K5.\n\n";
+			//cout << "Keeping K5.\n\n";
 		}
 		else {
 		_Kerr = _Kerr4;
 		_Kint = _Kint4;
-		cout << "K4.\n\n";
+		//cout << "K4.\n\n";
 		}
 	}
 	if (_x(8,0) >= R4 && delta_x(8,0) < R5) {
 		if (_Kerr == _Kerr4 && _x(8,0) < R4+hyst) {
 			_Kerr = _Kerr4;
 			_Kint = _Kint4;
-			cout << "Keeping K4.\n\n";
+			//cout << "Keeping K4.\n\n";
 		}
 		else if (_Kerr == _Kerr6 && _x(8,0) > R5-hyst) {
 			_Kerr = _Kerr6;
 			_Kint = _Kint6;
-			cout << "Keeping K6.\n\n";
+			//cout << "Keeping K6.\n\n";
 		}
 		else {
 		_Kerr = _Kerr5;
 		_Kint = _Kint5;
-		cout << "K5.\n\n";
+		//cout << "K5.\n\n";
 		}
 	}
 	if (_x(8,0) >= R5 && _x(8,0) < R6) {
 		if (_Kerr == _Kerr5 && _x(8,0) < R5+hyst) {
 			_Kerr = _Kerr5;
 			_Kint = _Kint5;
-			cout << "Keeping K5.\n\n";
+			//cout << "Keeping K5.\n\n";
 		}
 		else if (_Kerr == _Kerr7 && _x(8,0) > R6-hyst) {
 			_Kerr = _Kerr7;
 			_Kint = _Kint7;
-			cout << "Keeping K7.\n\n";
+			//cout << "Keeping K7.\n\n";
 		}
 		else {
 		_Kerr = _Kerr6;
 		_Kint = _Kint6;
-		cout << "K6.\n\n";
+		//cout << "K6.\n\n";
 		}
 	}
 	if (_x(8,0) >= R6 && _x(8,0) < R7) {
 		if (_Kerr == _Kerr6 && _x(8,0) < R6+hyst) {
 			_Kerr = _Kerr6;
 			_Kint = _Kint6;
-			cout << "Keeping K6.\n\n";
+			//cout << "Keeping K6.\n\n";
 		}
 		else if (_Kerr == _Kerr8 && _x(8,0) > R7-hyst) {
 			_Kerr = _Kerr8;
 			_Kint = _Kint8;
-			cout << "Keeping K8.\n\n";
+			//cout << "Keeping K8.\n\n";
 		}
 		else {
 		_Kerr = _Kerr7;
 		_Kint = _Kint7;
-		cout << "K7.\n\n";
+		//cout << "K7.\n\n";
 		}
 	}
 	if (_x(8,0) >= R7) {
 			if (_Kerr == _Kerr7 && _x(8,0) < R7+hyst) {
 			_Kerr = _Kerr7;
 			_Kint = _Kint7;
-			cout << "Keeping K7.\n\n";
+			//cout << "Keeping K7.\n\n";
 		}
 		else {
 		_Kerr = _Kerr8;
 		_Kint = _Kint8;
-		cout << "K8.\n\n";
+		//cout << "K8.\n\n";
 		}
 	}
 
@@ -511,16 +529,16 @@ void MulticopterGSControl::computeControls()
 	_u_controls_norm(3,0) = fmin(fmax((u_control(3,0))/(0.05f), -1.0f), 1.0f);
 	_u_controls_norm(0,0) = fmin(fmax((u_control(0,0)+ff_thrust/16.0f), 0.0f), 1.0f);
 
-	//cout << u_control(0,0);
-	//cout << "\n";
-	//cout << u_control(1,0);
-	//cout << "\n";
-	//cout << u_control(2,0);
-	//cout << "\n";
-	//cout << u_control(3,0);
-	//cout << "\n\n";
-	//cout << t;
-	//cout << "\n\n";
+	// cout << u_control(0,0);
+	// cout << "\n";
+	// cout << u_control(1,0);
+	// cout << "\n";
+	// cout << u_control(2,0);
+	// cout << "\n";
+	// cout << u_control(3,0);
+	// cout << "\n\n";
+	// cout << t;
+	// cout << "\n\n";
 
 	//================================================
 
