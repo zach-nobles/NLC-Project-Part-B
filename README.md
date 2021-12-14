@@ -16,6 +16,9 @@ In order to use the gain scheudling controller (gs_control), please complete the
 
 As alluded to above, the feedback linearization controller is not ready to be excuted, feel free to add to it!
 
+# Controller Design
+Matlab scripts are also contained in this repository. These scripts were used to design the controllers and evaluate performance of those controller.
+
 # Report
 A report was created summarizing and analyzing the controller performance through matlab simulation and PX4 simultion
 OVERLEAF Report Link: https://www.overleaf.com/4463832759kznjknvbtdtb
