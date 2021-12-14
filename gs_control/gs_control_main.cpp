@@ -39,7 +39,6 @@
 #include <uORB/topics/sensor_combined.h>
 #include <conversion/rotation.h>
 #include <drivers/drv_hrt.h>
-//#include <lib/geo/geo.h>
 #include <circuit_breaker/circuit_breaker.h>
 #include <mathlib/math/Limits.hpp>
 #include <mathlib/math/Functions.hpp>
@@ -111,6 +110,7 @@ MulticopterGSControl::MulticopterGSControl():ModuleParams(nullptr),_loop_perf(pe
 	 region 10 =  3pi/4 ->  4pi/4
 	*/
 
+	// update all strings to match your local file locations
 	_Kerr1 = readMatrixKerr("C:/PX4/PX4-Autopilot/src/examples/gs_control/gs_files/K_err_-6pi4.txt");
 	_Kint1 = readMatrixKint("C:/PX4/PX4-Autopilot/src/examples/gs_control/gs_files/K_int_-6pi4.txt");
 
@@ -141,77 +141,6 @@ MulticopterGSControl::MulticopterGSControl():ModuleParams(nullptr),_loop_perf(pe
 	_Kerr10 = readMatrixKerr("C:/PX4/PX4-Autopilot/src/examples/gs_control/gs_files/K_err_2pi4.txt");
 	_Kint10 = readMatrixKint("C:/PX4/PX4-Autopilot/src/examples/gs_control/gs_files/K_int_2pi4.txt");
 
-
-	/*
-	cout << "============================================\n";
-	cout << _Kerr6(0,0); cout << "	";
-	cout << _Kerr6(0,1); cout << "	";
-	cout << _Kerr6(0,2); cout << "	";
-	cout << _Kerr6(0,3); cout << "	";
-	cout << _Kerr6(0,4); cout << "	";
-	cout << _Kerr6(0,5); cout << "	";
-	cout << _Kerr6(0,6); cout << "	";
-	cout << _Kerr6(0,7); cout << "	";
-	cout << _Kerr6(0,8); cout << "	";
-	cout << _Kerr6(0,9); cout << "	";
-	cout << _Kerr6(0,10); cout << "	";
-	cout << _Kerr6(0,11); cout << "\n";
-	cout << _Kerr6(1,0); cout << "	";
-	cout << _Kerr6(1,1); cout << "	";
-	cout << _Kerr6(1,2); cout << "	";
-	cout << _Kerr6(1,3); cout << "	";
-	cout << _Kerr6(1,4); cout << "	";
-	cout << _Kerr6(1,5); cout << "	";
-	cout << _Kerr6(1,6); cout << "	";
-	cout << _Kerr6(1,7); cout << "	";
-	cout << _Kerr6(1,8); cout << "	";
-	cout << _Kerr6(1,9); cout << "	";
-	cout << _Kerr6(1,10); cout << "	";
-	cout << _Kerr6(1,11); cout << "\n";
-	cout << _Kerr6(2,0); cout << "	";
-	cout << _Kerr6(2,1); cout << "	";
-	cout << _Kerr6(2,2); cout << "	";
-	cout << _Kerr6(2,3); cout << "	";
-	cout << _Kerr6(2,4); cout << "	";
-	cout << _Kerr6(2,5); cout << "	";
-	cout << _Kerr6(2,6); cout << "	";
-	cout << _Kerr6(2,7); cout << "	";
-	cout << _Kerr6(2,8); cout << "	";
-	cout << _Kerr6(2,9); cout << "	";
-	cout << _Kerr6(2,10); cout << "	";
-	cout << _Kerr6(2,11); cout << "\n";
-	cout << _Kerr6(3,0); cout << "	";
-	cout << _Kerr6(3,1); cout << "	";
-	cout << _Kerr6(3,3); cout << "	";
-	cout << _Kerr6(3,4); cout << "	";
-	cout << _Kerr6(3,5); cout << "	";
-	cout << _Kerr6(3,6); cout << "	";
-	cout << _Kerr6(3,7); cout << "	";
-	cout << _Kerr6(3,8); cout << "	";
-	cout << _Kerr6(3,9); cout << "	";
-	cout << _Kerr6(3,10); cout << "	";
-	cout << _Kerr6(3,11); cout << "\n";
-	cout << "============================================";
-	*/
-
-	cout << "============================================\n";
-	cout << _Kint6(0,0); cout << "	";
-	cout << _Kint6(0,1); cout << "	";
-	cout << _Kint6(0,2); cout << "	";
-	cout << _Kint6(0,3); cout << "	";
-	cout << _Kint6(1,0); cout << "	";
-	cout << _Kint6(1,1); cout << "	";
-	cout << _Kint6(1,2); cout << "	";
-	cout << _Kint6(1,3); cout << "	";
-	cout << _Kint6(2,0); cout << "	";
-	cout << _Kint6(2,1); cout << "	";
-	cout << _Kint6(2,2); cout << "	";
-	cout << _Kint6(2,3); cout << "\n";
-	cout << _Kint6(3,0); cout << "	";
-	cout << _Kint6(3,1); cout << "	";
-	cout << _Kint6(3,2); cout << "	";
-	cout << _Kint6(3,3); cout << "\n";
-	cout << "============================================";
 }
 
 // =================================================================================================================
@@ -306,17 +235,18 @@ void MulticopterGSControl::computeControls()
 
 	if (t>0.0f) {
 
-		float a = 1.0f;
+		float a = 3.0f;
 		float w = 3.1415f / 20.0f;
 		float eps = 1e-6f;
+
 		// Compute x component of Leminscate curve
-		float x_lem = (a*cos(w*t)) / (1.0f+pow(sin(w*t),2.0f));
-		float x_lem_future = (a*cos(w*(t+0.001f))) / (1.0f+pow(sin(w*(t+0.001f)),2.0f));
+		float x_lem = (a*cos(w*t)) / (1.0f+pow(sin(w*t),2.0f)) - a;
+		float x_lem_future = (a*cos(w*(t+0.001f))) / (1.0f+pow(sin(w*(t+0.001f)),2.0f)) - a;
 		_eq_point(0,0) = x_lem;
 
 		// Compute y component of Leminscate curve
-		float y_lem = (a*sin(w*t)*cos(w*t)) / (1+pow(sin(w*t),2.0f));
-		float y_lem_future = (a*sin(w*(t+0.001f))*cos(w*(t+0.001f))) / (1+pow(sin(w*(t+0.001f)),2.0f));
+		float y_lem = (a*sin(w*t)*cos(w*t)) / (1.0f+pow(sin(w*t),2.0f));
+		float y_lem_future = (a*sin(w*(t+0.001f))*cos(w*(t+0.001f))) / (1.0f+pow(sin(w*(t+0.001f)),2.0f));
 		_eq_point(1,0) = y_lem;
 
 		// Compute: yaw compent of Leminscate curve
@@ -336,24 +266,19 @@ void MulticopterGSControl::computeControls()
 		if ( (y_lem < 0.0f && x_lem >= 0.0f) || (y_lem > 0.0f && x_lem < 0.0f) ){
 			yaw += atan2((x_lem*(pow(a,2.0f)-pow(x_lem,2.0f)-pow(y_lem,2.0f))) , (y_lem_future*(pow(a,2.0f)+pow(x_lem,2.0f)+pow(y_lem,2.0f)))) - PI;
 		}
+		// Uncomment the following line to add tangnetial yaw reference
 		//_eq_point(8,0) = yaw;
 
-
-
-
-		// if (abs(_eq_point(1,0)) >= 1e-6f){
-		// 	_eq_point(8,0) = atan2((x_lem*(1.0f-2.0f*pow(x_lem,2.0f)-2.0f*pow(y_lem,2.0f))),  (y_lem*(1.0f+2.0f*pow(x_lem,2.0f)+2.0f*pow(y_lem,2.0f)))); /* yaw-component */
-		// }
+		// Uncomment the follwoing line to add varying vertical height refeence
+		//_eq_point(2,0) = 2.0f + 0.5f*sin(w*t);
 
 	}else{
 		_eq_point(2,0) = 2.0f; /* Liftoff to height = 2.0m */
 	}
 
-
 	//================================================
 
 	delta_x = _x - _eq_point;
-
 
 	//======== Integrate Trajectory Error =============
 
@@ -367,16 +292,18 @@ void MulticopterGSControl::computeControls()
 	_delta_x_int(2,0) = _delta_x_int(2,0) + dt*delta_x(2,0);
 
 	// integate yaw component error
-	_delta_x_int(3,0) = _delta_x_int(3,0) + dt*delta_x(8,0);
-
+	if (isnan(delta_x(8,0))) {
+		_delta_x_int(3,0) = _delta_x_int(3,0);
+	} else {
+		_delta_x_int(3,0) = _delta_x_int(3,0) + dt*delta_x(8,0);
+	}
 
 	//================================================
 
 
 	//=========== Identify Controller ================
 
-
-
+	// Region Boundaries
 	float R1 = -5.0f*PI/4.0f;
 	float R2 = -4.0f*PI/4.0f;
 	float R3 = -3.0f*PI/4.0f;
@@ -386,7 +313,7 @@ void MulticopterGSControl::computeControls()
 	float R7 = 1.0f*PI/4.0f;
 	float hyst = 0.1f;
 
-
+	// Controller Selector
 	if (_x(8,0) < R1) {
 		if (_Kerr == _Kerr2 && _x(8,0) > R1-hyst) {
 			_Kerr = _Kerr2;
@@ -514,14 +441,28 @@ void MulticopterGSControl::computeControls()
 		}
 	}
 
-
 	//================================================
-
-
 
 	//========== Compute Control Input ===============
 
-	u_control = -_Kerr*(delta_x)/50.0f - _Kint*(_delta_x_int)/50.0f;
+	if (_delta_x_int(3,0) > 1.0f) {
+		_delta_x_int(3,0) = 1.0f;
+	}
+	if (_delta_x_int(3,0) < -1.0f) {
+		_delta_x_int(3,0) = -1.0f;
+	}
+
+	if (_delta_x_int(2,0) > 1.0f) {
+		_delta_x_int(2,0) = 1.0f;
+	}
+	if (_delta_x_int(2,0) < -1.0f) {
+		_delta_x_int(2,0) = -1.0f;
+	}
+
+	u_control = -_Kerr*(delta_x)/80.0f - _Kint*(_delta_x_int)/80.0f;
+	if (t>0.0f) {
+	u_control = -_Kerr*(delta_x)/25.0f - _Kint*(_delta_x_int)/25.0f;
+	}
 
 	// with full
 	_u_controls_norm(1,0) = fmin(fmax((u_control(1,0))/(4.0f), -1.0f), 1.0f);
@@ -529,22 +470,17 @@ void MulticopterGSControl::computeControls()
 	_u_controls_norm(3,0) = fmin(fmax((u_control(3,0))/(0.05f), -1.0f), 1.0f);
 	_u_controls_norm(0,0) = fmin(fmax((u_control(0,0)+ff_thrust/16.0f), 0.0f), 1.0f);
 
-	// cout << u_control(0,0);
-	// cout << "\n";
-	// cout << u_control(1,0);
-	// cout << "\n";
-	// cout << u_control(2,0);
-	// cout << "\n";
-	// cout << u_control(3,0);
-	// cout << "\n\n";
-	// cout << t;
-	// cout << "\n\n";
+	//================================================
+
+	//========= Log State and Controls ================
+
+	writeStateOnFile("states.txt", _x, _curr_run);
+	writeActuatorControlsOnFile("controls.txt", _u_controls_norm, _curr_run);
 
 	//================================================
 
 	return;
 }
-
 
 // =================================================================================================================
 // Poll EKF States
@@ -591,38 +527,37 @@ void MulticopterGSControl::vehicle_angular_velocity_poll()
 // =================================================================================================================
 // Write to File
 
-void MulticopterGSControl::writeStateOnFile(const char *filename, Matrix <float,12,1>vect, hrt_abstime t) {
+void MulticopterGSControl::writeStateOnFile(const char *filename, Matrix<float,12,1> vect, hrt_abstime t) {
 
 	ofstream outfile;
 	outfile.open(filename, std::ios::out | std::ios::app);
-
-	outfile << t << "\t"; // time
-
-	for(int i=0;i>12;i++){
-		if(i==11){
-			outfile << vect(i,0) << "\n";
-		}else{
-			outfile << vect(i,0) << "\t";
-		}
-	}
+	outfile << t/1e6f << ", "; // time
+	outfile << vect(0,0) << ", ";
+	outfile << vect(1,0) << ", ";
+	outfile << vect(2,0) << ", ";
+	outfile << vect(3,0) << ", ";
+	outfile << vect(4,0) << ", ";
+	outfile << vect(5,0) << ", ";
+	outfile << vect(6,0) << ", ";
+	outfile << vect(7,0) << ", ";
+	outfile << vect(8,0) << ", ";
+	outfile << vect(9,0) << ", ";
+	outfile << vect(10,0) << ", ";
+	outfile << vect(11,0) << ";\n";
 	outfile.close();
 	return;
 }
 
-void MulticopterGSControl::writeActuatorControlsOnFile(const char *filename, Matrix <float,4,1>vect, hrt_abstime t) {
+void MulticopterGSControl::writeActuatorControlsOnFile(const char *filename, Matrix<float,4,1> vect, hrt_abstime t) {
 
 	ofstream outfile;
 	outfile.open(filename, std::ios::out | std::ios::app);
 
-	outfile << t << "\t"; // time
-
-	for(int i=0;i>4;i++){
-		if(i==3){
-			outfile << vect(i,0) << "\n";
-		}else{
-			outfile << vect(i,0) << "\t";
-		}
-	}
+	outfile << t/1e6f << ", "; // time
+	outfile << vect(0,0) << ", ";
+	outfile << vect(1,0) << ", ";
+	outfile << vect(2,0) << ", ";
+	outfile << vect(3,0) << ";\n";
 	outfile.close();
 	return;
 }
